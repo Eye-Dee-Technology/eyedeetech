@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+  <title>DevOps Automation: CI/CD Pipelines That Work — Eye Dee Tech</title>
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root{
+      --bg: #0b1020;
+      --panel: #0f172a;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --brand-1: #000000;
+      --brand-2: #ff6d18;
+      --ring: 0 0 0 3px rgba(14,165,233,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; overflow-x: hidden;}
+    body{
+      margin:0; padding: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(8,145,178,.25), transparent 50%),
+                  radial-gradient(900px 500px at 10% -10%, rgba(109,40,217,.25), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+    .container {
+      width: min(1200px, 100%);
+      margin-inline: auto;
+      padding-inline: 1rem;
+      box-sizing: border-box;
+    }
+    .btn{display:inline-flex;gap:.6rem;align-items:center;padding:.500rem 1.2rem;border-radius:12px;border:1px solid rgba(148,163,184,.2);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); color:var(--text); font-weight:600; letter-spacing:.2px; transition:.2s ease;}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.25), 0 0 0 2px rgba(99,102,241,.2) inset}
+    .btn-ghost{background:transparent}
+    .card{background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.15); border-radius:18px; padding:1.25rem}
+
+    /* Header */
+    header{position:sticky; padding: 1px; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background:rgba(11,16,32,.6); border-bottom:1px solid rgba(148,163,184,.12)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    .brand{display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.3px}
+    .brand .logo{width:36px; height:36px; display:grid; place-items:center; color:white; background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); border-radius:12px; box-shadow:0 6px 18px rgba(8,145,178,.35)}
+    nav ul{display:flex; gap:1rem; list-style:none; padding:0; margin:0}
+    nav a{padding:.6rem .75rem; border-radius:10px; color:var(--muted); font-weight:600}
+    nav a:hover, nav a.active{color:var(--text); background:rgba(148,163,184,.12)}
+    .nav-cta{display:flex; gap:.6rem; align-items:center}
+    .menu-btn{display:none; background:none; border:none; color:var(--text); cursor:pointer; font-size:1.2rem}
+
+    /* Article */
+    .article-hero{padding:3rem 0; border-bottom:1px solid rgba(148,163,184,.12)}
+    h1{font-size: clamp(2rem, 4vw + 1rem, 3.6rem); line-height:1.1; margin:0}
+    .muted{color:var(--muted)}
+    .post-meta{display:flex; gap:1.5rem; font-size:.95rem; margin:1rem 0}
+    .post-date{color:var(--brand-2)}
+
+    .article-content{padding:3rem 0; max-width:800px}
+    .article-content h2{margin:2rem 0 1rem; font-size:1.8rem}
+    .article-content p{margin:1rem 0; line-height:1.8}
+    .article-content code{background:rgba(255,255,255,.08); padding:.2rem .5rem; border-radius:4px; font-family:'Courier New', monospace}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(148,163,184,.12); padding:2.2rem 0; color:#cbd5e1}
+    .foot{display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:1.2rem}
+    .foot h4{margin:.2rem 0 1rem}
+    .foot a{display:block; color:#cbd5e1; padding:.3rem 0}
+    .copyright{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem; font-size:.9rem; color:var(--muted)}
+
+@media (max-width: 560px) {
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+  .article-content { padding: 2rem 0; }
+  nav ul { display: none; }
+  .menu-btn { display: block; }
+  .foot { grid-template-columns: 1fr; }
+  .post-meta { flex-direction: column; gap: .5rem; }
+}
+
+.mobile-nav {
+  display: none;
+  background: var(--panel);
+  padding: 1rem;
+  border-radius: 12px;
+}
+.mobile-nav.open {
+  display: block;
+}
+.mobile-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  list-style: none;
+  padding: 0;
+}
+.mobile-nav a {
+  color: var(--text);
+  padding: .6rem 0;
+  border-bottom: 1px solid rgba(148,163,184,.2);
+}
+
+@media (min-width: 561px) {
+  .menu-btn { display: none; }
+  .mobile-nav { display: none; }
+}
+  </style>
+</head>
+<body>
+  <header aria-label="Primary">
+    <div class="container nav" role="navigation">
+      <a href="index%202026.html" class="brand" aria-label="Eye Dee Tech home">
+        <span class="logo" aria-hidden="true" style="padding:0; background:none; box-shadow:none">
+          <img src="https://i.postimg.cc/rsw-JZFby/eye-dee-logo.png" alt="Eye Dee Tech Logo" />
+        </span>
+        <span>Eye Dee Tech</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index%202026.html#services">Services</a></li>
+          <li><a href="index%202026.html#work">Work</a></li>
+          <li><a href="index%202026.html#process">Process</a></li>
+          <li><a href="index%202026.html#about">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="index%202026.html#contact"><i class="fa-regular fa-calendar"></i>Book a call</a>
+        <button class="menu-btn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+    <div class="mobile-nav container" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
+      <ul>
+        <li><a href="index%202026.html#services">Services</a></li>
+        <li><a href="index%202026.html#work">Work</a></li>
+        <li><a href="index%202026.html#process">Process</a></li>
+        <li><a href="index%202026.html#about">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <section class="article-hero">
+    <div class="container">
+      <a href="blog.html" class="btn btn-ghost" style="margin-bottom:1rem"><i class="fa-solid fa-arrow-left"></i> Back to blog</a>
+      <h1>DevOps Automation: CI/CD Pipelines That Work</h1>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa-regular fa-calendar"></i> Jan 10, 2026</span>
+        <span class="muted"><i class="fa-regular fa-user"></i> Emma Wilson</span>
+        <span class="muted"><i class="fa-regular fa-clock"></i> 10 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Content -->
+  <section class="article-content">
+    <div class="container">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="DevOps" style="margin:-1.25rem -1.25rem 1.5rem; border-radius:18px 18px 0 0; max-width:none; width:calc(100% + 2.5rem)"/>
+      </div>
+      
+      <p>Continuous Integration and Continuous Deployment (CI/CD) are fundamental practices in modern DevOps. A well-designed pipeline can reduce deployment risks, increase release frequency, and improve overall system reliability.</p>
+
+      <h2>What is CI/CD?</h2>
+      <p><strong>Continuous Integration (CI)</strong> is the practice of automatically building and testing code changes as they're committed. <strong>Continuous Deployment (CD)</strong> extends this by automatically deploying changes to production when tests pass.</p>
+      <p>Together, they create a feedback loop that accelerates development while maintaining quality standards.</p>
+
+      <h2>CI/CD Pipeline Stages</h2>
+      
+      <h3 style="font-size:1.3rem; margin:1.5rem 0 .8rem">1. Source Control</h3>
+      <p>Everything starts with version control. Use Git with clear branching strategies like Git Flow or trunk-based development.</p>
+
+      <h3 style="font-size:1.3rem; margin:1.5rem 0 .8rem">2. Build</h3>
+      <p>Compile code, run unit tests, and create artifacts. This stage should complete in minutes, not hours.</p>
+
+      <h3 style="font-size:1.3rem; margin:1.5rem 0 .8rem">3. Test</h3>
+      <p>Run automated tests including unit tests, integration tests, and end-to-end tests. Aim for high code coverage but focus on critical paths.</p>
+
+      <h3 style="font-size:1.3rem; margin:1.5rem 0 .8rem">4. Security Scanning</h3>
+      <p>Scan for vulnerabilities using SAST tools and dependency checkers. Don't skip this step!</p>
+
+      <h3 style="font-size:1.3rem; margin:1.5rem 0 .8rem">5. Staging Deployment</h3>
+      <p>Deploy to a staging environment that mirrors production. Run smoke tests and performance tests.</p>
+
+      <h3 style="font-size:1.3rem; margin:1.5rem 0 .8rem">6. Production Deployment</h3>
+      <p>Deploy to production using rolling updates or canary deployments. Monitor health metrics closely.</p>
+
+      <h2>Popular CI/CD Tools</h2>
+      <ul style="margin:1rem 0; padding-left:2rem">
+        <li style="margin:.5rem 0"><strong>GitHub Actions:</strong> Integrated with GitHub, good for small to medium teams</li>
+        <li style="margin:.5rem 0"><strong>GitLab CI/CD:</strong> Excellent built-in features with generous free tier</li>
+        <li style="margin:.5rem 0"><strong>Jenkins:</strong> Self-hosted, highly customizable, long track record</li>
+        <li style="margin:.5rem 0"><strong>CircleCI:</strong> Cloud-based, fast performance, good documentation</li>
+        <li style="margin:.5rem 0"><strong>AWS CodePipeline:</strong> Great integration with AWS services</li>
+      </ul>
+
+      <h2>Best Practices</h2>
+      <ul style="margin:1rem 0; padding-left:2rem">
+        <li style="margin:.5rem 0">Keep pipelines fast—aim for full deployment cycle under 30 minutes</li>
+        <li style="margin:.5rem 0">Fail fast—stop at the first failure rather than running all tests</li>
+        <li style="margin:.5rem 0">Use environment-specific configurations, not hardcoded values</li>
+        <li style="margin:.5rem 0">Implement comprehensive logging and monitoring</li>
+        <li style="margin:.5rem 0">Use immutable infrastructure with container images</li>
+        <li style="margin:.5rem 0">Implement proper access controls and audit logging</li>
+        <li style="margin:.5rem 0">Practice disaster recovery—test rollback procedures</li>
+      </ul>
+
+      <h2>Measuring Success</h2>
+      <p>Track these key metrics to evaluate your CI/CD pipeline effectiveness:</p>
+      <ul style="margin:1rem 0; padding-left:2rem">
+        <li style="margin:.5rem 0"><strong>Deployment Frequency:</strong> How often you deploy</li>
+        <li style="margin:.5rem 0"><strong>Lead Time for Changes:</strong> Time from commit to production</li>
+        <li style="margin:.5rem 0"><strong>Mean Time to Recovery:</strong> Time to fix production issues</li>
+        <li style="margin:.5rem 0"><strong>Change Failure Rate:</strong> Percentage of deployments causing issues</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>CI/CD pipelines are not just about automation—they're about building confidence in your deployments. A well-implemented pipeline reduces human error, increases deployment frequency, and allows teams to deliver value faster while maintaining quality. Start simple, measure results, and continuously improve.</p>
+
+      <div style="margin-top:2rem; padding-top:2rem; border-top:1px solid rgba(148,163,184,.15)">
+        <a href="index%202026.html#contact" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> Start a project</a>
+        <a href="blog.html" class="btn btn-ghost" style="margin-left:.5rem"><i class="fa-solid fa-arrow-left"></i> Back to blog</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="foot">
+        <div>
+          <div class="brand"><span class="logo" style="padding:0; background:none; box-shadow:none">
+          <img src="https://i.postimg.cc/rsw-JZFby/eye-dee-logo.png" alt="Eye Dee Tech Logo" />
+          </span><span>Eye Dee Tech</span></div>
+          <p class="muted" style="margin-top:.8rem">Digital solutions partner crafting secure, scalable products.</p>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="index%202026.html#about">About</a>
+          <a href="index%202026.html#work">Case studies</a>
+          <a href="index%202026.html#process">Our process</a>
+          <a href="index%202026.html#services">Services</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="blog.html">Blog</a>
+          <a href="#">Security</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:info@eyedeetech.com">info@eyedeetech.com</a>
+          <a href="tel:+2347011395838">+234 701 139 5838</a>
+          <a href="index%202026.html#contact">Book a discovery call</a>
+          <a href="index%202026.html#contact">Careers</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <span>© 2026 Eye Dee Tech. All rights reserved.</span>
+        <a class="muted" href="#">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuBtn = document.querySelector(".menu-btn");
+      const mobileNav = document.querySelector(".mobile-nav");
+
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          mobileNav.classList.toggle("open");
+        });
+
+        mobileNav.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

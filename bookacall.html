@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book a Call | Eye Dee Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --primary: #ff7a00;        /* Eye Dee Tech deep orange */
+      --primary-dark: #e66e00;
+      --bg-dark: #0b1220;
+      --card-bg: #111827;
+      --text-light: #e5e7eb;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #111827, var(--bg-dark));
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* Left section */
+    .content h1 {
+      font-size: 42px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .content h1 span {
+      color: var(--primary);
+    }
+
+    .content p {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .features li {
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+
+    .features li::before {
+      content: "✔";
+      color: var(--primary);
+      margin-right: 10px;
+    }
+
+    /* Right section */
+    .card {
+      background: linear-gradient(180deg, #111827, #0f172a);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .book-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary), #ff9a2f);
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(255, 122, 0, 0.45);
+      transition: all 0.3s ease;
+    }
+
+    .book-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(255, 122, 0, 0.6);
+    }
+
+    .note {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .content h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Left content -->
+    <div class="content">
+      <h1>Let’s Talk About Your <span>Project</span></h1>
+      <p>
+        Book a free consultation with Eye Dee Tech.  
+        We’ll discuss your idea, technical requirements, and how we can help
+        you build scalable, high-quality solutions.
+      </p>
+
+      <ul class="features">
+        <li>Free 30-minute discovery call</li>
+        <li>Web, Mobile & Software solutions</li>
+        <li>AI, Cloud & Custom Development, E.t.c</li>
+        <li>No obligation — just clarity</li>
+      </ul>
+    </div>
+
+    <!-- Right card -->
+    <div class="card">
+      <h2>Book a Call</h2>
+      <p>
+        Choose a convenient time and speak directly with an Eye Dee Tech expert.
+      </p>
+
+      <!-- Replace this link when ready -->
+      <a
+        href="https://calendly.com/eyedeetech"
+        target="_blank"
+        class="book-btn"
+      >
+        📅 Schedule Your Call
+      </a>
+
+      <div class="note">
+        You’ll receive a confirmation instantly.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

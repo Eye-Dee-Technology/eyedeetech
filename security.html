@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eye Dee Tech — Security</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#081120;
+      --card:#0f172a;
+      --card2:#111c34;
+      --text:#e2e8f0;
+      --muted:#94a3b8;
+      --primary:#ff6d18;
+      --border:rgba(255,255,255,.06);
+    }
+
+    body{
+      font-family:Inter,system-ui,Arial,sans-serif;
+      background:linear-gradient(to bottom,#07111f,#0b1020);
+      color:var(--text);
+      line-height:1.7;
+      padding:2rem;
+    }
+
+    .container{
+      max-width:1150px;
+      margin:auto;
+    }
+
+    a{
+      color:var(--primary);
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at top right,rgba(255,109,24,.18),transparent 30%),
+        linear-gradient(135deg,#111827,#0f172a);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:3rem;
+      margin-bottom:2rem;
+    }
+
+    .hero h1{
+      font-size:3rem;
+      margin-bottom:1rem;
+      line-height:1.1;
+    }
+
+    .hero p{
+      max-width:760px;
+      font-size:1.05rem;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      padding:.6rem 1rem;
+      border-radius:999px;
+      background:rgba(255,109,24,.12);
+      color:#ffb486;
+      border:1px solid rgba(255,109,24,.2);
+      margin-bottom:1.3rem;
+      font-size:.9rem;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1rem;
+      margin:2rem 0;
+    }
+
+    .stat{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:1.4rem;
+      text-align:center;
+      transition:.3s ease;
+    }
+
+    .stat:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,109,24,.2);
+    }
+
+    .stat h2{
+      color:var(--primary);
+      font-size:2rem;
+      margin-bottom:.4rem;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1.2rem;
+      margin-top:1rem;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:1.5rem;
+      transition:.3s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(255,109,24,.25);
+      box-shadow:0 0 30px rgba(255,109,24,.05);
+    }
+
+    .icon{
+      width:58px;
+      height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:14px;
+      background:rgba(255,109,24,.12);
+      color:var(--primary);
+      font-size:1.3rem;
+      margin-bottom:1rem;
+    }
+
+    h2{
+      margin-bottom:.8rem;
+    }
+
+    h3{
+      margin-bottom:.5rem;
+    }
+
+    ul{
+      padding-left:1.2rem;
+      margin-top:.7rem;
+    }
+
+    ul li{
+      margin-bottom:.5rem;
+    }
+
+    .timeline{
+      margin-top:1rem;
+      border-left:2px solid rgba(255,109,24,.3);
+      padding-left:1.2rem;
+    }
+
+    .timeline-item{
+      position:relative;
+      margin-bottom:1.3rem;
+    }
+
+    .timeline-item::before{
+      content:"";
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--primary);
+      position:absolute;
+      left:-1.58rem;
+      top:.35rem;
+    }
+
+    .banner{
+      margin:2rem 0;
+      padding:2rem;
+      border-radius:22px;
+      background:
+      linear-gradient(135deg,#13203c,#0d172b);
+      border:1px solid rgba(255,109,24,.12);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .banner::after{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      background:rgba(255,109,24,.08);
+      border-radius:50%;
+      right:-100px;
+      top:-100px;
+      filter:blur(15px);
+    }
+
+    .pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.8rem;
+      margin-top:1rem;
+    }
+
+    .pill{
+      padding:.7rem 1rem;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.05);
+      font-size:.95rem;
+    }
+
+    .notice{
+      margin-top:2rem;
+      padding:1.2rem;
+      border-radius:14px;
+      background:#07111f;
+      border:1px solid var(--border);
+      color:var(--muted);
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      transition:.25s ease;
+      font-weight:600;
+    }
+
+    button:hover{
+      transform:translateY(-2px);
+      opacity:.95;
+    }
+
+    .primary-btn{
+      background:var(--primary);
+      color:white;
+      padding:.8rem 1.1rem;
+      border-radius:10px;
+    }
+
+    .outline-btn{
+      background:transparent;
+      border:1px solid rgba(255,109,24,.2);
+      color:var(--primary);
+      padding:.8rem 1rem;
+      border-radius:10px;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      background:#071028;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:10px;
+      padding:.8rem;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.6);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+    }
+
+    .modal-content{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:1.5rem;
+      width:92%;
+      max-width:720px;
+    }
+
+    .form-group{
+      margin-bottom:1rem;
+    }
+
+    @media(max-width:700px){
+
+      body{
+        padding:1rem;
+      }
+
+      .hero{
+        padding:2rem;
+      }
+
+      .hero h1{
+        font-size:2.2rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="badge">
+        <i class="fa-solid fa-shield-halved"></i>
+        Enterprise Security Standards
+      </div>
+
+      <h1>Security Practices & Infrastructure Protection</h1>
+
+      <p class="muted">
+        Security is embedded into every stage of our systems, applications,
+        infrastructure, and operational processes. Eye Dee Tech continuously
+        improves its cybersecurity posture using layered defenses, proactive
+        monitoring, encryption technologies, and secure engineering principles
+        designed to protect customer environments and digital assets.
+      </p>
+
+    </section>
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+      <div class="stat">
+        <h2>24/7</h2>
+        <p class="muted">Threat Monitoring</p>
+      </div>
+
+      <div class="stat">
+        <h2>256-bit</h2>
+        <p class="muted">Encryption Standards</p>
+      </div>
+
+      <div class="stat">
+        <h2>72hrs</h2>
+        <p class="muted">Disclosure Response Goal</p>
+      </div>
+
+      <div class="stat">
+        <h2>99.9%</h2>
+        <p class="muted">Infrastructure Reliability Target</p>
+      </div>
+
+    </div>
+
+    <!-- BANNER -->
+
+    <section class="banner">
+
+      <div class="badge">
+        <i class="fa-solid fa-bolt"></i>
+        Active Security Architecture
+      </div>
+
+      <h2>Built with Defense-in-Depth Security</h2>
+
+      <p class="muted">
+        Our systems are engineered with multiple layers of security controls,
+        hardened infrastructure, encrypted communications, secure deployment
+        workflows, and continuous monitoring designed to minimize risk exposure.
+      </p>
+
+      <div class="pills">
+
+        <div class="pill">
+          <i class="fa-solid fa-lock"></i>
+          Encrypted Systems
+        </div>
+
+        <div class="pill">
+          <i class="fa-solid fa-server"></i>
+          Hardened Infrastructure
+        </div>
+
+        <div class="pill">
+          <i class="fa-solid fa-eye"></i>
+          Continuous Monitoring
+        </div>
+
+        <div class="pill">
+          <i class="fa-solid fa-shield-virus"></i>
+          Threat Detection
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SECURITY GRID -->
+
+    <div class="grid">
+
+      <!-- SDLC -->
+
+      <section class="card">
+
+        <div class="icon">
+          <i class="fa-solid fa-code"></i>
+        </div>
+
+        <h2>Secure Development Lifecycle</h2>
+
+        <p class="muted">
+          Security controls are integrated into the entire software development
+          lifecycle from planning and architecture to deployment and maintenance.
+        </p>
+
+        <ul>
+          <li>Threat modeling during system design</li>
+          <li>Static & dynamic analysis (SAST / DAST)</li>
+          <li>Dependency vulnerability scanning</li>
+          <li>Code review security validation</li>
+          <li>Secure CI/CD deployment pipelines</li>
+          <li>Supply-chain risk monitoring</li>
+        </ul>
+
+      </section>
+
+      <!-- DATA -->
+
+      <section class="card">
+
+        <div class="icon">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+
+        <h2>Data Protection</h2>
+
+        <p class="muted">
+          We implement layered data protection measures to maintain integrity,
+          confidentiality, and secure handling of sensitive information.
+        </p>
+
+        <ul>
+          <li>TLS/HTTPS encrypted communications</li>
+          <li>Secure password hashing practices</li>
+          <li>Role-based access controls</li>
+          <li>Encrypted backups & recovery systems</li>
+          <li>Restricted privileged access</li>
+        </ul>
+
+      </section>
+
+      <!-- IAM -->
+
+      <section class="card">
+
+        <div class="icon">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+
+        <h2>Identity & Access Management</h2>
+
+        <p class="muted">
+          Authentication and authorization controls help minimize unauthorized
+          access risks across internal systems and infrastructure.
+        </p>
+
+        <ul>
+          <li>Multi-factor authentication enforcement</li>
+          <li>Least privilege access controls</li>
+          <li>Privileged session monitoring</li>
+          <li>Secure credential management</li>
+          <li>Access audit logging</li>
+        </ul>
+
+      </section>
+
+      <!-- INFRA -->
+
+      <section class="card">
+
+        <div class="icon">
+          <i class="fa-solid fa-server"></i>
+        </div>
+
+        <h2>Infrastructure Security</h2>
+
+        <p class="muted">
+          Multiple defensive layers are used to protect infrastructure against
+          evolving cyber threats and operational disruptions.
+        </p>
+
+        <ul>
+          <li>Firewall & intrusion detection systems</li>
+          <li>Automated patch management</li>
+          <li>DDoS mitigation strategies</li>
+          <li>Cloud configuration hardening</li>
+          <li>Continuous system monitoring</li>
+        </ul>
+
+      </section>
+
+      <!-- MONITORING -->
+
+      <section class="card">
+
+        <div class="icon">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+
+        <h2>Monitoring & Threat Detection</h2>
+
+        <p class="muted">
+          Security telemetry and monitoring systems continuously analyze
+          application activity and infrastructure behavior.
+        </p>
+
+        <ul>
+          <li>Real-time security alerts</li>
+          <li>Anomaly behavior detection</li>
+          <li>Audit log retention</li>
+          <li>Authentication monitoring</li>
+          <li>Suspicious traffic analysis</li>
+        </ul>
+
+      </section>
+
+      <!-- COMPLIANCE -->
+
+      <section class="card">
+
+        <div class="icon">
+          <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+
+        <h2>Compliance & Governance</h2>
+
+        <p class="muted">
+          Governance frameworks and operational controls help maintain
+          accountability, resilience, and risk management processes.
+        </p>
+
+        <ul>
+          <li>Security awareness training</li>
+          <li>Incident management procedures</li>
+          <li>Operational risk assessments</li>
+          <li>Access review procedures</li>
+          <li>Policy enforcement mechanisms</li>
+        </ul>
+
+      </section>
+
+    </div>
+
+    <!-- AUDITS -->
+
+    <section class="card" style="margin-top:1.4rem">
+
+      <div class="icon">
+        <i class="fa-solid fa-bug"></i>
+      </div>
+
+      <h2>Penetration Testing & Security Audits</h2>
+
+      <p class="muted">
+        We perform internal security reviews and engage external assessments
+        focused on authentication, infrastructure resilience, API security,
+        access controls, and vulnerability identification.
+      </p>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <strong>Quarterly Security Reviews</strong>
+          <p class="muted">
+            Infrastructure and application security evaluations.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <strong>Continuous Vulnerability Scanning</strong>
+          <p class="muted">
+            Automated scanning for known software weaknesses.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <strong>Incident Simulation Exercises</strong>
+          <p class="muted">
+            Preparedness testing and response improvement activities.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- INCIDENT RESPONSE -->
+
+    <section class="card" style="margin-top:1.4rem">
+
+      <div class="icon">
+        <i class="fa-solid fa-shield-virus"></i>
+      </div>
+
+      <h2>Incident Response Procedures</h2>
+
+      <p class="muted">
+        Documented response workflows help investigate, contain, mitigate,
+        and recover from security incidents efficiently.
+      </p>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>1. Detection</h3>
+          <p class="muted">
+            Identify indicators of compromise and suspicious activity.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>2. Containment</h3>
+          <p class="muted">
+            Limit exposure and isolate affected services securely.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>3. Eradication</h3>
+          <p class="muted">
+            Remove malicious artifacts and remediate vulnerabilities.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>4. Recovery</h3>
+          <p class="muted">
+            Restore systems safely while monitoring for recurrence.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TRAINING -->
+
+    <section class="card" style="margin-top:1.4rem">
+
+      <div class="icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+
+      <h2>Security Awareness & Training</h2>
+
+      <p class="muted">
+        Security is a shared responsibility. Personnel receive ongoing training
+        related to phishing prevention, social engineering awareness, secure
+        data handling, and operational security best practices.
+      </p>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>
+            <i class="fa-solid fa-envelope-circle-check"
+              style="color:#ff6d18"></i>
+            Phishing Simulations
+          </h3>
+
+          <p class="muted">
+            Simulated attacks help improve awareness and reporting practices.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>
+            <i class="fa-solid fa-database"
+              style="color:#ff6d18"></i>
+            Secure Data Handling
+          </h3>
+
+          <p class="muted">
+            Secure procedures for processing and storing sensitive data.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>
+            <i class="fa-solid fa-triangle-exclamation"
+              style="color:#ff6d18"></i>
+            Threat Awareness
+          </h3>
+
+          <p class="muted">
+            Teams stay informed about evolving cyber risks and attack vectors.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- RESPONSIBLE DISCLOSURE -->
+
+    <section class="card" style="margin-top:1.4rem">
+
+      <div class="icon">
+        <i class="fa-solid fa-envelope-open-text"></i>
+      </div>
+
+      <h2>Responsible Disclosure</h2>
+
+      <p class="muted">
+        If you discover a security vulnerability or suspicious issue,
+        please report it responsibly by contacting:
+      </p>
+
+      <p style="margin-top:1rem">
+        <a href="mailto:security@eyedeetech.com">
+          security@eyedeetech.com
+        </a>
+      </p>
+
+      <p class="muted" style="margin-top:1rem">
+        Include reproduction steps, affected systems, and supporting evidence
+        where possible. We aim to acknowledge reports within 72 hours.
+      </p>
+
+      <div style="margin-top:1.4rem;display:flex;gap:.8rem;flex-wrap:wrap">
+
+      </div>
+
+    </section>
+
+    <!-- NOTICE -->
+
+    <div class="notice">
+
+      <strong>Security Notice:</strong>
+      Please avoid sending passwords, private encryption keys,
+      authentication secrets, or confidential credentials directly through email.
+      Use secure communication channels whenever possible.
+
+    </div>
+
+    <p style="margin-top:1.6rem">
+      <a href="index 2026.html">
+        ← Back to Site
+      </a>
+    </p>
+
+  </div>
+
+  <!-- MODAL -->
+
+  <div id="reportModal" class="modal">
+
+    <div class="modal-content">
+
+      <h2 style="margin-bottom:1rem">
+        Report a Security Issue
+      </h2>
+
+      <form id="reportForm">
+
+        <div class="form-group">
+          <input type="text"
+            id="r-name"
+            placeholder="Your Name (optional)">
+        </div>
+
+        <div class="form-group">
+          <input type="email"
+            id="r-email"
+            placeholder="Your Email">
+        </div>
+
+        <div class="form-group">
+          <textarea rows="7"
+            id="r-details"
+            placeholder="Describe the issue and reproduction steps"></textarea>
+        </div>
+
+        <div style="display:flex;gap:.8rem;justify-content:flex-end">
+
+          <button type="button"
+            id="cancelReport"
+            class="outline-btn">
+            Cancel
+          </button>
+
+          <button type="submit"
+            class="primary-btn">
+            Send Report
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    (() => {
+
+      const modal = document.getElementById("reportModal");
+      const openBtn = document.getElementById("openReportBtn");
+      const cancelBtn = document.getElementById("cancelReport");
+      const form = document.getElementById("reportForm");
+      const copyBtn = document.getElementById("copyEmailBtn");
+
+      const securityEmail = "security@eyedeetech.com";
+
+      openBtn.addEventListener("click", () => {
+        modal.style.display = "flex";
+      });
+
+      cancelBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      modal.addEventListener("click", (e) => {
+        if(e.target === modal){
+          modal.style.display = "none";
+        }
+      });
+
+      copyBtn.addEventListener("click", () => {
+
+        navigator.clipboard.writeText(securityEmail)
+        .then(() => {
+
+          copyBtn.innerHTML =
+            '<i class="fa-solid fa-check"></i> Copied';
+
+          setTimeout(() => {
+
+            copyBtn.innerHTML =
+              '<i class="fa-regular fa-copy"></i> Copy Email';
+
+          },2000);
+
+        });
+
+      });
+
+      form.addEventListener("submit",(e)=>{
+
+        e.preventDefault();
+
+        const name =
+          document.getElementById("r-name").value.trim();
+
+        const email =
+          document.getElementById("r-email").value.trim();
+
+        const details =
+          document.getElementById("r-details").value.trim();
+
+        if(!details){
+          alert("Please describe the issue.");
+          return;
+        }
+
+        let body = "";
+
+        if(name){
+          body += "Name: " + name + "\n";
+        }
+
+        if(email){
+          body += "Email: " + email + "\n";
+        }
+
+        body += "\nIssue Details:\n" + details;
+
+        const subject =
+          encodeURIComponent(
+            "Security Disclosure" +
+            (name ? " — " + name : "")
+          );
+
+        const mailto =
+          "mailto:" + securityEmail +
+          "?subject=" + subject +
+          "&body=" + encodeURIComponent(body);
+
+        window.location.href = mailto;
+
+        modal.style.display = "none";
+
+      });
+
+    })();
+
+  </script>
+
+</body>
+</html>

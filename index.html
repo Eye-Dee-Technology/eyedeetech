@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+  <title>Eye Dee Tech — Digital Solutions & Innovation</title>
+  <meta name="description" content="Eye Dee Tech delivers modern software development, cloud, and product design solutions that help businesses move faster and smarter." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="EyeTech Dee  — Digital Solutions & Innovation" />
+  <meta property="og:description" content="Modern software development, cloud, and product design solutions to move faster and smarter." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("Dltl4eZvgHSUdsRXL"); // your public key
+  </script>
+<style>
+    :root{
+      --bg: #0b1020;
+      --panel: #0f172a;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --brand-1: #000000; /* purple */
+      --brand-2: #ff6d18; /* cyan */
+      --ring: 0 0 0 3px rgba(14,165,233,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; overflow-x: hidden;  /* disable horizontal scrolling */}
+    body{
+
+      margin:0; padding: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(8,145,178,.25), transparent 50%),
+                  radial-gradient(900px 500px at 10% -10%, rgba(109,40,217,.25), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+    .container {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  box-sizing: border-box;
+}
+    .btn{display:inline-flex;gap:.6rem;align-items:center;padding:.500rem 1.2rem;border-radius:12px;border:1px solid rgba(148,163,184,.2);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); color:var(--text); font-weight:600; letter-spacing:.2px; transition:.2s ease;}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,.25), 0 0 0 2px rgba(99,102,241,.2) inset}
+    .btn-primary{background: linear-gradient(135deg, var(--brand-1), var(--brand-2)); border:none}
+    .btn-ghost{background:transparent}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.10rem .6rem;border:1px solid rgba(148,163,184,.25); color:var(--muted); border-radius:999px; font-size:.85rem;}
+    .grid{display:grid; gap:1.2rem}
+    .card{background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.15); border-radius:18px; padding:1.25rem}
+
+    /* Header */
+    header{position:sticky; padding: 1px; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background:rgba(11,16,32,.6); border-bottom:1px solid rgba(148,163,184,.12)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    .brand{display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.3px}
+    .brand .logo{width:36px; height:36px; display:grid; place-items:center; color:white; background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); border-radius:12px; box-shadow:0 6px 18px rgba(8,145,178,.35)}
+    nav ul{display:flex; gap:1rem; list-style:none; padding:0; margin:0}
+    nav a{padding:.6rem .75rem; border-radius:10px; color:var(--muted); font-weight:600}
+    nav a:hover, nav a.active{color:var(--text); background:rgba(148,163,184,.12)}
+    .nav-cta{display:flex; gap:.6rem; align-items:center}
+    .menu-btn{display:none}
+
+    /* Hero */
+    .hero{padding:5rem 0 3rem}
+    .hero .wrap{display:grid; grid-template-columns: 1.2fr .8fr; align-items:center; gap:2rem}
+    .kicker{display:flex; gap:.8rem; align-items:center}
+    .kicker i{color:var(--brand-2)}
+    h1{font-size: clamp(2rem, 4vw + 1rem, 3.6rem); line-height:1.1; margin:0}
+    .lead{font-size: clamp(1rem, .6vw + 1rem, 1.25rem); color:#cbd5e1}
+    .hero-cta{display:flex; gap:.8rem; align-items:center; flex-wrap:wrap; margin-top:1.2rem}
+    .stats{display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; margin-top:1.6rem}
+    .stat{background:rgba(255,255,255,.03); border:1px solid rgba(148,163,184,.15); border-radius:16px; padding:1rem}
+    .stat h3{margin:.2rem 0; font-size:1.6rem}
+
+    /* Marquee / Scrolling Text */
+    .typing-section {
+      overflow: hidden;
+      border-block: 1px solid rgba(148,163,184,.12);
+      background: linear-gradient(90deg, rgba(15,23,42,.8), rgba(15,23,42,.5), rgba(15,23,42,.8));
+      padding: 1.25rem 0; /* remove side padding so marquee can reach edges */
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 72px;
+    }
+    .marquee {
+      overflow: hidden;
+      width: 100vw; /* ensure full viewport width */
+      margin-left: calc(50% - 50vw); /* break out from any centered container */
+    }
+    .marquee-track {
+      display: inline-block;
+      white-space: nowrap;
+      will-change: transform;
+      animation: marquee 60s linear infinite;
+      color: #ffffff; /* white text */
+      font-family: 'Space Mono', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, monospace;
+      font-size: 1rem;
+      letter-spacing: 0.2px;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (min-width: 640px) {
+      .typing-section { padding: 1.5rem 0; min-height: 86px; }
+      .marquee-track { font-size: 1.05rem; }
+    }
+    @media (min-width: 1024px) {
+      .marquee-track { font-size: 1.15rem; }
+    }
+
+    /* Sections */
+    section{padding:4rem 0}
+    .section-head{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:1.2rem}
+    .section-head h2{margin:0; font-size: clamp(1.4rem, 2.4vw + .6rem, 2.2rem)}
+    .muted{color:var(--muted)}
+
+    /* Services */
+    .services{grid-template-columns: repeat(12, 1fr)}
+    .service{grid-column: span 4; position: relative; overflow:hidden}
+    .service .icon{font-size:1.4rem; width:40px; height:40px; display:grid; place-items:center; border-radius:12px; background:rgba(99,102,241,.15)}
+    .service h3{margin:.6rem 0 .3rem}
+    .service p{margin:0}
+
+    /* Case studies */
+    .cases{grid-template-columns: repeat(12, 1fr)}
+    .case{grid-column: span 6; overflow:hidden; padding:0}
+    .case .thumb{height:220px; background-size:cover; background-position:center}
+    .case .body{padding:1.1rem}
+
+    /* Process */
+    .process{grid-template-columns: repeat(4, 1fr)}
+    .step{position:relative}
+    .step .num{width:36px; height:36px; border-radius:999px; display:grid; place-items:center; background:linear-gradient(135deg, var(--brand-1), var(--brand-2)); font-weight:800}
+
+    /* Testimonials */
+    .testimonials{grid-template-columns: repeat(3, 1fr)}
+    blockquote{margin:0}
+    blockquote p{font-size:1rem}
+
+    /* CTA banner */
+    .cta{display:grid; grid-template-columns: 1.1fr .9fr; gap:1.2rem; align-items:center}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(148,163,184,.12); padding:2.2rem 0; color:#cbd5e1}
+    .foot{display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:1.2rem}
+    .foot h4{margin:.2rem 0 1rem}
+    .foot a{display:block; color:#cbd5e1; padding:.3rem 0}
+    .copyright{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem; font-size:.9rem; color:var(--muted)}
+
+    input, textarea{width:100%; padding:.9rem 1rem; border-radius:12px; border:1px solid rgba(148,163,184,.2); background:rgba(255,255,255,.02); color:var(--text); outline:none}
+    input:focus, textarea:focus{box-shadow: var(--ring)}
+    label{display:block; font-weight:600; color:#cbd5e1; margin-bottom:.5rem}
+    form .grid{grid-template-columns:repeat(2, 1fr)}
+
+    /* Newsletter Popup */
+    #newsletterBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(90deg, #ff6c18, #ff9e3c);
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      z-index: 999;
+      border: none;
+      font-weight: 600;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+    }
+
+    .popup {
+      background: #0f172a;
+      max-width: 400px;
+      padding: 30px 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 10% auto;
+      position: relative;
+      animation: pop 0.3s ease;
+      border: 1px solid rgba(148,163,184,.15);
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity:0; }
+      to { transform: scale(1); opacity:1; }
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .popup input[type="email"] {
+      padding: 10px;
+      width: 90%;
+      border: 1px solid rgba(148,163,184,.2);
+      border-radius: 4px;
+      margin: 10px auto;
+      background:rgba(255,255,255,.02);
+      color:var(--text);
+    }
+
+    .popup button {
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #ff6c18, #ff9e3c);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #responseMessage {
+      margin-top: 10px;
+      color: #cbd5e1;
+    }
+
+    /* Portfolio Request Modal */
+    .portfolio-modal {
+      display: none;
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portfolio-modal.open {
+      display: flex;
+    }
+
+    .portfolio-modal-content {
+      background: #0f172a;
+      max-width: 500px;
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,.15);
+      position: relative;
+      animation: pop 0.3s ease;
+    }
+
+    .portfolio-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text);
+      background: none;
+      border: none;
+    }
+
+    .portfolio-modal-close:hover {
+      color: var(--brand-2);
+    }
+
+@media (max-width: 560px) {
+  .hero .wrap {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero .wrap .lead {
+    text-align: center;
+  }
+
+  .stats { 
+    grid-template-columns: 1fr; 
+  }
+
+  .services { 
+    grid-template-columns: 1fr; 
+  }
+
+  .cases { 
+    grid-template-columns: 1fr; 
+  }
+
+  .process { 
+    grid-template-columns: 1fr; 
+  }
+
+  .testimonials { 
+    grid-template-columns: 1fr; 
+  }
+
+  .foot { 
+    grid-template-columns: 1fr; 
+  }
+
+  nav ul { 
+    display: none; 
+  }
+  .menu-btn { 
+    display: block; 
+  }
+  .mobile-nav { 
+    display: block; 
+    background: var(--panel); 
+    padding: 1rem; 
+    border-radius: 12px; 
+  }
+  .mobile-nav ul { 
+    display: flex; 
+    flex-direction: column; 
+    gap: .8rem; 
+    list-style: none; 
+    padding: 0; 
+  }
+  .mobile-nav a { 
+    color: var(--text); 
+    padding: .6rem 0; 
+    border-bottom: 1px solid rgba(148,163,184,.2); 
+  }
+}
+
+
+@media (min-width: 861px) and (max-width: 1024px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .cta { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1025px) {
+  .hero .wrap { grid-template-columns: repeat(2, 1fr); }
+  .cta { grid-template-columns: repeat(2, 1fr); }
+  .service { grid-column: span 4; }
+  .case { grid-column: span 4; }
+  .process { grid-template-columns: repeat(3, 1fr); }
+  .testimonials { grid-template-columns: repeat(3, 1fr); }
+  .foot { grid-template-columns: repeat(4, 1fr); }
+  
+  .nav ul { display: flex; gap: 2rem; }
+  .menu-btn,
+  .mobile-nav { display: none; }
+}
+@media (max-width: 560px) {
+  body {
+    font-size: 14px; /* shrink overall text */
+  }
+
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
+  p, li { font-size: 0.9rem; text-align: left;}
+
+  .hero .wrap {
+    padding: 1rem;
+  }
+
+  .stats, .services, .cases, .process, .team {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .card, .service, .case, .step, .member {
+    padding: 1rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  
+  <header aria-label="Primary">
+    <div class="container nav" role="navigation">
+      <a href="#home" class="brand" aria-label="Eye Dee Tech home">
+        <span class="logo" aria-hidden="true" style="padding:0; background:none; box-shadow:none">
+          <img src="https://i.postimg.cc/rsw-JZFby/eye-dee-logo.png" alt="Eye Dee Tech Logo" />
+        </span>
+        <span>Eye Dee Tech</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a class="active" href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="bookacall.html"><i class="fa-regular fa-calendar"></i>Book a call</a>
+        <button class="menu-btn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  <div class="mobile-nav container" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+
+  </ul>
+</div>
+
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container wrap">
+      <div>
+        <div class="kicker"><span class="pill"><i class="fa-regular fa-circle-check"></i> ISO-grade quality</span> <span class="pill"><i class="fa-solid fa-bolt"></i> Ship 3× faster</span></div>
+        <h1>Build, launch, and scale with a technology partner you can trust.</h1>
+        <p class="lead">Eye Dee Tech helps startups and enterprises design delightful products, modernize legacy systems, and run in the cloud with confidence.</p>
+        <div class="hero-cta">
+          <a href="project.html" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Start a project</a>
+          <a href="#work" class="btn"><i class="fa-regular fa-circle-play"></i> See our work</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="muted">Projects delivered</span>
+            <h3>120+</h3>
+          </div>
+          <div class="stat">
+            <span class="muted">Avg. time to MVP</span>
+            <h3>8–10 weeks</h3>
+          </div>
+          <div class="stat">
+            <span class="muted">Client satisfaction</span>
+            <h3>98%</h3>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:0; overflow:hidden">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;min-height:220px;font-size:1.2rem;color:#cbd5e1;text-align:center;">Developers collaborating in a modern office</div>
+        </div>
+        <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top:1rem">
+          <div class="card">
+            <strong><i class="fa-solid fa-shield-heart"></i> Security-first</strong>
+            <p class="muted">OWASP-aligned reviews, SAST/DAST, and least-privilege by default.</p>
+          </div>
+          <div class="card">
+            <strong><i class="fa-solid fa-cloud-arrow-up"></i> Cloud-native</strong>
+            <p class="muted">Kubernetes, serverless, and IaC that scale with your growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scrolling Marquee -->
+  <div class="typing-section">
+    <div class="container">
+      <div class="marquee" aria-label="Announcements">
+        <div class="marquee-track" id="marqueeTrack" role="region" aria-live="off"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Services</h2>
+        <p class="muted">From idea to impact — end‑to‑end product teams.</p>
+      </div>
+      <div class="grid services">
+        <article class="card service">
+          <div class="icon">1<i class="fa-solid fa-code"></i></div>    
+          <h4>Mobile App & Web Development
+</h4>
+          <p class="muted">We design and build responsive websites and intuitive mobile apps that look great, perform seamlessly, and drive real business results. From e-commerce platforms to portfolio sites and custom mobile solutions, our work is tailored to your goals..</p>
+        </article>
+        <article class="card service">
+          <div class="icon">2<i class="fa-solid fa-diagram-project"></i></div>
+          <h4>Phone and Computer Repair
+</h4>
+          <p class="muted">We provide fast and reliable repair services for smartphones, laptops, and desktops. From hardware fixes to software troubleshooting, our team ensures your devices run smoothly.
+.</p>
+        </article>
+        <article class="card service">
+          <div class="icon">3<i class="fa-solid fa-shield-halved"></i></div>
+          <h4>CCTV Installation
+</h4>
+          <p class="muted">At Eye Dee Tech, we provide professional CCTV installation services designed to give you peace of mind and keep your property secure. Whether for your home, office, or business, our experts deliver reliable surveillance solutions tailored to your needs..</p>
+        </article>
+        <article class="card service">
+          <div class="icon">4<i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h4>Motion Design</h4>
+          <p class="muted">Bring your brand to life with engaging intro and outro animations, explainer videos, and interactive visuals that capture attention and simplify complex ideas.</p>
+        </article>
+        <article class="card service">
+          <div class="icon">5<i class="fa-solid fa-pencil-ruler"></i></div>
+          <h4>Product Design</h4>
+          <p class="muted">We turn ideas into user-friendly, visually striking products. From research and UX/UI design to prototyping and testing, we create solutions that delight customers and align with your brand.</p>
+        </article>
+        <article class="card service">
+          <div class="icon">6<i class="fa-solid fa-database"></i></div>
+          <h4>LIMS Solutions</h4>
+          <p class="muted">Our Laboratory Information Management System (LIMS) solution is designed to help laboratories streamline operations, ensure compliance, and improve data accuracy. From sample tracking to results reporting, we provide a powerful, flexible, and user-friendly system tailored to your workflow.</p>
+        </article>
+      </div>
+      <a class="btn btn-ghost" href="other-services.html">Other Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies / Work -->
+  <section id="work">
+    <div class="container">
+      <div class="section-head">
+        <h2>Selected Work</h2>
+        <button class="btn btn-ghost" id="requestPortfolioBtn"><i class="fa-regular fa-folder"></i> Request full portfolio</button>
+      </div>
+      <div class="grid cases">
+        <article class="card case">
+              <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1645685491865-42a4fbbc9912?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+          <div class="body">
+            <h3>Healthcare LIMS Software</h3>
+            <p class="muted">Built a custom Laboratory Information Management System tailored for a medical lab, automating sample tracking, reporting, and compliance, which reduced turnaround time by 30%.</p>
+          </div>
+        </article>
+        <article class="card case">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+          <div class="body">
+            <h3>Corporate Website</h3>
+            <p class="muted">Delivered a modern, responsive corporate site with strong branding, SEO optimization, and fast load times, helping the client strengthen their digital presence.</p>
+          </div>
+        </article>
+        <article class="card case">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1666613789268-e8f311259920?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+          <div class="body">
+            <h3>Security Projects</h3>
+            <p class="muted">Implemented a full CCTV surveillance system for a retail chain, complete with HD cameras, remote monitoring, and AI-based motion detection, significantly boosting property security.</p>
+          </div>
+        </article>
+        <article class="card case">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1693486144764-bc6f09ace7bd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+          <div class="body">
+            <h3>Mobile Game App</h3>
+            <p class="muted">Created an engaging mobile game with interactive levels, touch controls, and AdMob monetization.</p>
+          </div>
+        </article>
+        <article class="card case">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+          <div class="body">
+            <h3>Analytics Dashboard</h3>
+            <p class="muted">Built a real-time analytics dashboard with custom visualizations and role-based access, improving decision speed for stakeholders.</p>
+          </div>
+        </article>
+        <article class="card case">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0')"></div>
+          <div class="body">
+            <h3>E‑commerce Platform</h3>
+            <p class="muted">Delivered a performant e‑commerce platform with payment integration, inventory automation, and a smooth checkout flow.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>How We Work</h2>
+        <p class="muted">Transparent, collaborative, outcome‑driven.</p>
+      </div>
+      <div class="grid process">
+        <div class="card step">
+          <div class="num">1</div>
+          <h3>Discover & Understanding</h3>
+          <p class="muted">We start by listening. Through consultations and workshops, we take the time to understand your business goals, challenges, and target audience. This ensures we align technology with real-world needs.</p>
+        </div>
+        <div class="card step">
+          <div class="num">2</div>
+          <h3>Design & Build</h3>
+          <p class="muted">Our team combines creativity and technical expertise to craft user-centered designs and build scalable, reliable, and secure solutions. Every detail is refined to deliver seamless user experiences.</p>
+        </div>
+        <div class="card step">
+          <div class="num">3</div>
+          <h3>Test & Refine</h3>
+          <p class="muted">Quality is non-negotiable. We run rigorous testing and quality assurance at every stage, ensuring performance, security, and usability meet ISO-grade standards.</p>
+        </div>
+        <div class="card step">
+          <div class="num">4</div>
+          <h3>Launch & Support</h3>
+          <p class="muted">When your solution goes live, we stay with you. From deployment to continuous support and optimization, we make sure your product evolves with your business.</p>
+        </div>
+        <div class="card step">
+          <div class="num">5</div>
+          <h3>Monitor & Iterate</h3>
+          <p class="muted">We instrument key metrics and run post‑launch experiments to iterate quickly, reduce churn, and improve product-market fit over time.</p>
+        </div>
+        <div class="card step">
+          <div class="num">6</div>
+          <h3>Scale & Optimize</h3>
+          <p class="muted">As your user base grows, we optimize performance, automate operations, and scale architecture to meet demand efficiently and securely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>About Eye Dee Tech</h2>
+        <p class="muted">We blend craftsmanship with pragmatism to ship software people love.</p>
+      </div>
+      <div class="grid" style="grid-template-columns: 1.2fr .8fr">
+        <div class="card">
+          <h3>Mission</h3>
+          <p class="muted">At Eye Dee Tech, we bridge the gap between innovation and execution by delivering world-class digital solutions that help businesses grow faster, operate smarter, and compete globally. We are driven by excellence, innovation, collaboration, and empowerment, combining deep technical expertise with strategic thinking to solve real-world business challenges.
+
+We specialize in building scalable software, intelligent cloud systems, and user-centered digital experiences that are secure, reliable, and future-ready. Every solution we create is designed with performance, usability, and measurable impact in mind—helping organizations streamline operations, enhance customer engagement, and unlock new growth opportunities.
+
+Our mission is to be a trusted partner in digital transformation, simplifying complexity, accelerating innovation, and guiding businesses through every stage of their technology journey. By embracing emerging technologies and a results-driven approach, we don’t just build products—we help shape the future of technology-driven growth.</p>
+          <div class="grid" style="grid-template-columns: 1fr 1fr; gap:1rem; margin-top:1rem">
+            <div class="stat"><span class="muted">In‑house experts</span><h3>45+</h3></div>
+            <div class="stat"><span class="muted">Countries served</span><h3>12</h3></div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <strong><i class="fa-solid fa-universal-access"></i> Accessibility</strong>
+            <p class="muted">We create inclusive digital experiences that empower everyone, ensuring our solutions are easy to use and accessible to people of all abilities.</p>
+          </div>
+          <div class="card">
+            <strong><i class="fa-solid fa-leaf"></i> Sustainability</strong>
+            <p class="muted">We are committed to responsible innovation, designing solutions that respect the environment and support long-term positive impact for businesses and communities.</p>
+          </div>
+          <div class="card">
+            <strong><i class="fa-solid fa-handshake-angle"></i> Partnership</strong>
+            <p class="muted">Collaboration drives our success. We work closely with clients and stakeholders, building trusted relationships that deliver meaningful and lasting results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <h2>What Clients Say</h2>
+        <p class="muted">Outcomes our partners can vouch for.</p>
+      </div>
+      <div class="grid testimonials">
+        <figure class="card">
+          <blockquote>
+            <p>“Eye Dee Tech took us from idea to launch in under two months. Flawless execution and great communication.”</p>
+          </blockquote>
+          <figcaption class="muted">— Head of Product, SaaS Unicorn</figcaption>
+        </figure>
+        <figure class="card">
+          <blockquote>
+            <p>“Their security expertise saved us from costly pitfalls. The audit was thorough and actionable.”</p>
+          </blockquote>
+          <figcaption class="muted">— CTO, Fintech Scale‑up</figcaption>
+        </figure>
+        <figure class="card">
+          <blockquote>
+            <p>“True partners who challenge assumptions and deliver. Our NPS skyrocketed post‑redesign.”</p>
+          </blockquote>
+          <figcaption class="muted">— VP Experience, E‑commerce Brand</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section aria-label="Contact banner">
+    <div class="container cta card">
+      <div>
+        <h2>Ready to build something remarkable?</h2>
+        <p class="muted">Tell us about your goals. We’ll propose a low‑risk, high‑impact plan within 48 hours.</p>
+      </div>
+      <div style="display:flex; gap:.50rem; align-items:center; justify-content:flex-end; flex-wrap:wrap">
+        <a href="project.html" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> Start a project</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Portfolio Request Modal -->
+  <div class="portfolio-modal" id="portfolioModal">
+    <div class="portfolio-modal-content">
+      <button class="portfolio-modal-close" id="portfolioModalClose"><i class="fa-solid fa-xmark"></i></button>
+      <h2>Request Full Portfolio</h2>
+      <p class="muted" style="margin-bottom:1.5rem">Fill in your details to receive our complete portfolio and case studies.</p>
+      <form id="portfolioForm" action="https://formspree.io/f/xvgbwjbj" method="POST" novalidate>
+        <div class="grid" style="grid-template-columns:1fr">
+          <div>
+            <label for="portfolio-name">Name</label>
+            <input id="portfolio-name" name="name" type="text" placeholder="Your full name" required />
+          </div>
+          <div>
+            <label for="portfolio-email">Email</label>
+            <input id="portfolio-email" name="email" type="email" placeholder="name@company.com" required />
+          </div>
+          <div>
+            <label for="portfolio-company">Company</label>
+            <input id="portfolio-company" name="company" type="text" placeholder="Company or organization" />
+          </div>
+          <div>
+            <label for="portfolio-message">Tell us about your interest</label>
+            <textarea id="portfolio-message" name="message" rows="4" placeholder="What type of work interests you?"></textarea>
+          </div>
+        </div>
+        <div style="display:flex; gap:.8rem; margin-top:1.5rem; flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> Send Request</button>
+          <span id="portfolioFormStatus" class="muted" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Newsletter Popup -->
+  <button id="newsletterBtn">📧 Subscribe</button>
+  <div class="popup-overlay" id="popup">
+    <div class="popup">
+      <span class="close" id="closePopup">&times;</span>
+      <h2>Stay Updated!</h2>
+      <p>Subscribe to our newsletter and get the latest updates and offers straight to your inbox.</p>
+      <form id="newsletterForm">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit" style="width:90%; margin-top:10px">Subscribe</button>
+      </form>
+      <p id="responseMessage"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+<div class="container">
+<div class="foot">
+<div>
+<div class="brand"><span class="logo" style="padding:0; background:none; box-shadow:none">
+  <img src="https://i.postimg.cc/rsw-JZFby/eye-dee-logo.png" alt="Eye Dee Tech Logo" style="width:36px; height:36px; object-fit:contain; display:block; background:none; border-radius:8px;" />
+</span><span>Eye Dee Tech</span></div>
+<p class="muted" style="margin-top:.8rem">Digital solutions partner crafting secure, scalable products.</p>
+<div style="display:flex; gap:.6rem; margin-top:.6rem">
+<a class="pill" href="#"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+<a class="pill" href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+<a class="pill" href="#"><i class="fa-brands fa-github"></i> GitHub</a>
+</div>
+</div>
+<div>
+<h4>Company</h4>
+<a href="#about">About</a>
+<a href="#work">Case studies</a>
+<a href="#process">Our process</a>
+<a href="#services">Services</a>
+</div>
+<div>
+<h4>Resources</h4>
+<a href="blog.html">Blog</a>
+<a href="security.html">Security</a>
+</div>
+<div>
+<h4>Contact</h4>
+<a href="mailto:info@eyedeetech.com">info@eyedeetech.com</a>
+<a href="tel:+2347011395838">+234 701 139 5838</a>
+<a href="bookacall.html">Book a discovery call</a>
+<a href="careers.html">Careers</a>
+<a href="privacy-policy.html">Privacy Policy</a>
+</div>
+</div>
+<div class="copyright">
+<span>© <span id="year"></span>  Eye Dee Tech. All rights reserved.</span>
+</div>
+</div>
+</footer>
+
+
+<style>
+.mobile-nav {
+  display: none;
+  transition: max-height .3s ease;
+}
+.mobile-nav.open {
+  display: block;
+}
+</style>
+
+<script>
+// Portfolio Request Modal
+document.addEventListener('DOMContentLoaded', function () {
+  const portfolioModal = document.getElementById('portfolioModal');
+  const portfolioBtn = document.getElementById('requestPortfolioBtn');
+  const portfolioClose = document.getElementById('portfolioModalClose');
+  const portfolioForm = document.getElementById('portfolioForm');
+  const portfolioStatus = document.getElementById('portfolioFormStatus');
+
+  // Open modal
+  if (portfolioBtn) {
+    portfolioBtn.addEventListener('click', function() {
+      portfolioModal.classList.add('open');
+    });
+  }
+
+  // Close modal
+  if (portfolioClose) {
+    portfolioClose.addEventListener('click', function() {
+      portfolioModal.classList.remove('open');
+    });
+  }
+
+  // Close modal when clicking outside
+  portfolioModal.addEventListener('click', function(e) {
+    if (e.target === portfolioModal) {
+      portfolioModal.classList.remove('open');
+    }
+  });
+
+  // Form submission
+  if (portfolioForm) {
+    portfolioForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      portfolioStatus.textContent = '';
+      
+      const name = portfolioForm.querySelector('[name="name"]').value.trim();
+      const email = portfolioForm.querySelector('[name="email"]').value.trim();
+      let valid = true;
+
+      if (!name) {
+        valid = false;
+        portfolioStatus.textContent = 'Please enter your name.';
+        portfolioForm.querySelector('[name="name"]').focus();
+      } else if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        valid = false;
+        portfolioStatus.textContent = 'Please enter a valid email address.';
+        portfolioForm.querySelector('[name="email"]').focus();
+      }
+
+      if (!valid) return;
+
+      portfolioStatus.textContent = 'Sending...';
+
+      fetch(portfolioForm.action, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: new FormData(portfolioForm)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          portfolioStatus.textContent = 'Thank you! We will send the portfolio to your email shortly.';
+          portfolioForm.reset();
+          setTimeout(() => {
+            portfolioModal.classList.remove('open');
+            portfolioStatus.textContent = '';
+          }, 2000);
+        } else {
+          response.json().then(function(data) {
+            if (data.errors) {
+              portfolioStatus.textContent = data.errors.map(e => e.message).join(', ');
+            } else {
+              portfolioStatus.textContent = 'Oops! There was a problem. Please try again.';
+            }
+          });
+        }
+      })
+      .catch(function() {
+        portfolioStatus.textContent = 'Oops! There was a problem. Please try again.';
+      });
+    });
+  }
+});
+
+// Newsletter Popup
+document.addEventListener('DOMContentLoaded', function() {
+  const popup = document.getElementById('popup');
+  const openBtn = document.getElementById('newsletterBtn');
+  const closeBtn = document.getElementById('closePopup');
+  const form = document.getElementById('newsletterForm');
+  const responseMessage = document.getElementById('responseMessage');
+
+  // Open popup
+  if (openBtn) {
+    openBtn.addEventListener('click', function() {
+      popup.style.display = 'block';
+    });
+  }
+
+  // Close popup
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      popup.style.display = 'none';
+    });
+  }
+
+  // Close when clicking outside
+  popup.addEventListener('click', function(e) {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+
+  // Auto popup after 5 seconds (only on first visit)
+  if (!sessionStorage.getItem('newsletterShown')) {
+    setTimeout(() => {
+      popup.style.display = 'block';
+      sessionStorage.setItem('newsletterShown', 'true');
+    }, 5000);
+  }
+
+  // Newsletter form submission
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      responseMessage.textContent = '';
+      const email = form.email.value.trim();
+
+      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        responseMessage.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      responseMessage.textContent = 'Subscribing...';
+
+      emailjs.send("service_ac4ixtl","template_n3vg4du", { email })
+        .then(() => {
+          responseMessage.textContent = "Thank you for subscribing!";
+          responseMessage.style.color = '#4ade80';
+          form.reset();
+          setTimeout(() => {
+            popup.style.display = 'none';
+            responseMessage.style.color = '#cbd5e1';
+          }, 2000);
+        })
+        .catch(err => {
+          responseMessage.textContent = "Error: " + (err.text || 'Please try again');
+          responseMessage.style.color = '#ff6b6b';
+        });
+    });
+  }
+});
+
+// Marquee Scrolling
+document.addEventListener('DOMContentLoaded', function() {
+  const messages = [
+    "🚀 Building scalable, secure software solutions that transform complex ideas into seamless digital experiences.",
+    "💻 Modernizing legacy systems and designing delightful products that empower businesses globally.",
+    "☁️ Leveraging intelligent cloud systems to optimize performance, reduce costs, and drive smarter operations.",
+    "📱 Developing intuitive mobile apps that combine innovation, user-centric design, and exceptional speed.",
+    "🤖 Harnessing AI and automation to simplify tasks, enhance productivity, and fuel sustainable growth.",
+    "🌐 Creating interconnected digital ecosystems that enable collaboration, innovation, and rapid adaptation.",
+    "🛠️ Engineering software with precision, creativity, and foresight to tackle real-world challenges.",
+    "💡 Inspiring innovation by merging technology, strategy, and creativity to shape the digital future.",
+    "🔧 Phone and computer repairs done right—fast, reliable, and trustworthy solutions you can count on.",
+    "📹 Professional CCTV installation bringing peace of mind to homes, offices, and businesses everywhere.",
+    "✨ Motion design and animation that captivates audiences and brings your vision to life.",
+    "🧪 LIMS solutions streamlining laboratory operations with compliance, accuracy, and efficiency."
+  ];
+
+  const track = document.getElementById('marqueeTrack');
+  if (!track) return;
+  const sep = '   •   ';
+  const base = messages.join(sep);
+  // duplicate content so the animation can scroll continuously
+  track.textContent = base + sep + base;
+
+  // set animation duration proportional to content length (keeps speed pleasant)
+  const approxChars = track.textContent.length;
+  // slower: increase minimum and maximum duration and use a gentler ratio
+  const durationSec = Math.max(20, Math.min(120, Math.round(approxChars / 4)));
+  track.style.animationDuration = durationSec + 's';
+});
+
+// Contact Form
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.textContent = '';
+      // Simple validation
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      let valid = true;
+      if (!name) {
+        valid = false;
+        status.textContent = 'Please enter your name.';
+        form.name.focus();
+      } else if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        valid = false;
+        status.textContent = 'Please enter a valid email address.';
+        form.email.focus();
+      } else if (!message) {
+        valid = false;
+        status.textContent = 'Please enter your project details.';
+        form.message.focus();
+      }
+      if (!valid) return;
+      status.textContent = 'Sending...';
+      // Send form data to Formspree
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: new FormData(form)
+      })
+      .then(function (response) {
+        if (response.ok) {
+          status.textContent = 'Thank you! Your message has been sent.';
+          form.reset();
+        } else {
+          response.json().then(function(data){
+            if (data.errors) {
+              status.textContent = data.errors.map(e => e.message).join(', ');
+            } else {
+              status.textContent = 'Oops! There was a problem sending your message.';
+            }
+          });
+        }
+      })
+      .catch(function () {
+        status.textContent = 'Oops! There was a problem sending your message.';
+      });
+    });
+  }
+});
+
+// Mobile Navigation
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.querySelector(".menu-btn");
+  const mobileNav = document.querySelector(".mobile-nav");
+
+  if (menuBtn && mobileNav) {
+    // Toggle menu on button click
+    menuBtn.addEventListener("click", () => {
+      mobileNav.classList.toggle("open");
+    });
+
+    // Close menu when a link is clicked
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("open");
+      });
+    });
+  }
+});
+
+// Update year in footer
+document.addEventListener('DOMContentLoaded', function() {
+  const yearSpan = document.getElementById('year');
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+});
+</script>
+
+</body>
+</html>
