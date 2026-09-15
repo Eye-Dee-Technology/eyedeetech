@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Appointment | Eye Dee Tech</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --primary:#ff9f00;
+      --primary-dark:#ff7b00;
+      --black:#050505;
+      --dark:#0c0c0c;
+      --card:#111111;
+      --border:rgba(255,159,0,.15);
+      --text:#ffffff;
+      --muted:#bdbdbd;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#000;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+      overflow-x:hidden;
+      color:var(--text);
+      position:relative;
+    }
+
+    /* Background Glow */
+
+    .background-glow{
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:var(--primary);
+      filter:blur(180px);
+      opacity:.18;
+      top:-120px;
+      left:-120px;
+      z-index:-1;
+    }
+
+    .background-glow2{
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:var(--primary-dark);
+      filter:blur(180px);
+      opacity:.14;
+      bottom:-120px;
+      right:-120px;
+      z-index:-1;
+    }
+
+    /* Floating Effects */
+
+    .floating{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,159,0,.08);
+      animation:float 6s infinite ease-in-out;
+      z-index:-1;
+    }
+
+    .floating1{
+      width:180px;
+      height:180px;
+      top:50px;
+      left:50px;
+    }
+
+    .floating2{
+      width:120px;
+      height:120px;
+      bottom:80px;
+      right:100px;
+      animation-delay:2s;
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-20px);
+      }
+    }
+
+    .container{
+      width:100%;
+      max-width:1180px;
+      position:relative;
+      z-index:2;
+    }
+
+    .booking-card{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      background:rgba(10,10,10,.95);
+      border:1px solid var(--border);
+      backdrop-filter:blur(12px);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:
+      0 20px 60px rgba(0,0,0,.65),
+      0 0 30px rgba(255,159,0,.08);
+      position:relative;
+    }
+
+    .booking-card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:4px;
+      background:linear-gradient(
+        90deg,
+        transparent,
+        var(--primary),
+        transparent
+      );
+    }
+
+    /* LEFT */
+
+    .left-section{
+      padding:70px 60px;
+      background:
+      linear-gradient(
+        135deg,
+        rgba(255,159,0,.18),
+        rgba(0,0,0,.95)
+      );
+      position:relative;
+      overflow:hidden;
+      border-right:1px solid var(--border);
+    }
+
+    .left-section::before{
+      content:'';
+      position:absolute;
+      width:320px;
+      height:320px;
+      border:1px solid rgba(255,159,0,.08);
+      border-radius:50%;
+      top:-120px;
+      right:-120px;
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      font-size:14px;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      margin-bottom:28px;
+      color:var(--primary);
+      font-weight:600;
+    }
+
+    .brand::before{
+      content:'';
+      width:35px;
+      height:2px;
+      background:var(--primary);
+    }
+
+    .left-section h1{
+      font-size:54px;
+      line-height:1.1;
+      margin-bottom:25px;
+      font-weight:700;
+      max-width:500px;
+    }
+
+    .left-section h1 span{
+      color:var(--primary);
+    }
+
+    .left-section p{
+      line-height:1.9;
+      font-size:15px;
+      color:var(--muted);
+      margin-bottom:40px;
+      max-width:450px;
+    }
+
+    .features{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      margin-bottom:45px;
+    }
+
+    .feature{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-size:14px;
+      color:#fff;
+    }
+
+    .dot{
+      width:11px;
+      height:11px;
+      background:var(--primary);
+      border-radius:50%;
+      box-shadow:0 0 12px var(--primary);
+    }
+
+    .whatsapp-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:16px 30px;
+      background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+      );
+      color:#000;
+      text-decoration:none;
+      border-radius:14px;
+      font-weight:700;
+      transition:.35s;
+      width:fit-content;
+      box-shadow:0 10px 25px rgba(255,159,0,.25);
+    }
+
+    .whatsapp-btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 35px rgba(255,159,0,.35);
+    }
+
+    /* RIGHT */
+
+    .right-section{
+      padding:60px 50px;
+      background:#050505;
+    }
+
+    .form-title{
+      font-size:34px;
+      margin-bottom:10px;
+      font-weight:700;
+    }
+
+    .form-title span{
+      color:var(--primary);
+    }
+
+    .form-subtitle{
+      font-size:14px;
+      color:var(--muted);
+      margin-bottom:35px;
+    }
+
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    input,
+    select,
+    textarea{
+      width:100%;
+      padding:16px 18px;
+      border:1px solid rgba(255,159,0,.08);
+      outline:none;
+      border-radius:14px;
+      background:#111;
+      color:#fff;
+      font-size:15px;
+      transition:.3s;
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+      color:#888;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:var(--primary);
+      background:#ffffff;
+      box-shadow:0 0 0 4px rgba(255,159,0,.08);
+    }
+
+    textarea{
+      min-height:130px;
+      resize:none;
+    }
+
+    button{
+      padding:18px;
+      border:none;
+      border-radius:14px;
+      background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+      );
+      color:#000;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.35s;
+      margin-top:10px;
+      box-shadow:0 12px 25px rgba(255,159,0,.18);
+    }
+
+    button:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 35px rgba(255,159,0,.35);
+    }
+
+    .footer-text{
+      margin-top:28px;
+      font-size:13px;
+      color:#777;
+      text-align:center;
+    }
+
+    /* Responsive */
+
+    @media(max-width:950px){
+
+      .booking-card{
+        grid-template-columns:1fr;
+      }
+
+      .left-section,
+      .right-section{
+        padding:40px 30px;
+      }
+
+      .left-section h1{
+        font-size:40px;
+      }
+
+      .row{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:600px){
+
+      body{
+        padding:18px;
+      }
+
+      .left-section h1{
+        font-size:34px;
+      }
+
+      .form-title{
+        font-size:28px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+<div class="background-glow2"></div>
+
+<div class="floating floating1"></div>
+<div class="floating floating2"></div>
+
+<div class="container">
+
+  <div class="booking-card">
+
+    <!-- LEFT -->
+
+    <div class="left-section">
+
+      <div class="brand">
+        EYE DEE TECH
+      </div>
+
+      <h1>
+        Book a <span>Professional</span> Consultation
+      </h1>
+
+      <p>
+        Schedule a meeting with Eye Dee Tech for website development,
+        mobile apps, branding, UI/UX design, business solutions,
+        and digital innovation services.
+      </p>
+
+      <div class="features">
+
+        <div class="feature">
+          <div class="dot"></div>
+          Fast Response Time
+        </div>
+
+        <div class="feature">
+          <div class="dot"></div>
+          Professional Consultation
+        </div>
+
+        <div class="feature">
+          <div class="dot"></div>
+          Mobile Friendly Booking
+        </div>
+
+        <div class="feature">
+          <div class="dot"></div>
+          Secure Appointment Requests
+        </div>
+
+      </div>
+
+      <a href="https://wa.me/message/NLCECW4FU2QDK1" class="whatsapp-btn">
+        Book via WhatsApp
+      </a>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="right-section">
+
+      <div class="form-title">
+        Appointment <span>Form</span>
+      </div>
+
+      <div class="form-subtitle">
+        Fill in your details to schedule your appointment.
+      </div>
+
+      <form id="bookingForm" action="https://formspree.io/f/your_form_id" method="POST">
+
+        <div class="row">
+
+          <input 
+            type="text" 
+            name="name" 
+            placeholder="Full Name" 
+            required
+          >
+
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email Address" 
+            required
+          >
+
+        </div>
+
+        <div class="row">
+
+          <input 
+            type="tel" 
+            name="phone" 
+            placeholder="Phone Number"
+          >
+
+          <select name="service" required>
+            <option value="">Select Service</option>
+            <option>Website Development</option>
+            <option>Mobile App Development</option>
+            <option>UI/UX Design</option>
+            <option>Branding & Identity</option>
+            <option>Business Email Setup</option>
+            <option>SEO Optimization</option>
+          </select>
+
+        </div>
+
+        <div class="row">
+
+          <input 
+            type="date" 
+            name="date" 
+            required
+          >
+
+          <input 
+            type="time" 
+            name="time" 
+            required
+          >
+
+        </div>
+
+        <textarea 
+          name="message" 
+          placeholder="Additional Details..."
+        ></textarea>
+
+        <button type="submit">
+          Confirm Booking
+        </button>
+
+      </form>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var form = document.getElementById('bookingForm');
+
+          if (!form) return;
+
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            if (!form.checkValidity()) {
+              form.reportValidity();
+              return;
+            }
+
+            fetch(form.action, {
+              method: 'POST',
+              headers: { Accept: 'application/json' },
+              body: new FormData(form)
+            })
+              .then(function (response) {
+                if (response.ok) {
+                  window.location.href = 'thank-you.html';
+                  return;
+                }
+                return response.json().then(function (data) {
+                  throw new Error(data.error || 'Unable to send booking request.');
+                });
+              })
+              .catch(function (error) {
+                alert(error.message || 'Unable to send booking request. Please try again later.');
+              });
+          });
+        });
+      </script>
+
+      <div class="footer-text">
+        © 2026 Eye Dee Tech — Professional Digital Solutions
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
